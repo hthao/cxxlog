@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Cxxlog by hthao</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">Cxxlog</h1>
+      <h2 class="project-tagline">A simple log class (C++)</h2>
+      <a href="https://github.com/hthao/cxxlog" class="btn">View on GitHub</a>
+      <a href="https://github.com/hthao/cxxlog/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/hthao/cxxlog/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <h1>
+<a id="cxxlog" class="anchor" href="#cxxlog" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>cxxlog</h1>
+
+<p>A simple log class (c++). </p>
+
+<ul>
+<li>Efficient</li>
+<li>Thread safe</li>
+<li>Easy to use</li>
+</ul>
+
+<h2>
+<a id="format" class="anchor" href="#format" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Format</h2>
+
+<p><code>timestamp</code> <code>[thread ID]</code> <code>&lt;log level&gt;</code> <code>log content</code></p>
+
+<h2>
+<a id="example" class="anchor" href="#example" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Example</h2>
+
+<h4>
+<a id="code" class="anchor" href="#code" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>code</code>
+</h4>
+
+<div class="highlight highlight-source-c"><pre>
+<span class="pl-en">CXXLOG_OPEN</span>(<span class="pl-s"><span class="pl-pds">"</span>./test.log<span class="pl-pds">"</span></span>, <span class="pl-c1">true</span>); <span class="pl-c">/* "true" is meant to output to stdout. */</span>
+<span class="pl-en">CXXLOG_TRACE</span>(<span class="pl-s"><span class="pl-pds">"</span>this is a cxxlog example, <span class="pl-c1">%s</span>, <span class="pl-c1">%d</span>.<span class="pl-cce">\n</span><span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>hello world<span class="pl-pds">"</span></span>, <span class="pl-c1">10</span>);
+<span class="pl-en">CXXLOG_DEBUG</span>(<span class="pl-s"><span class="pl-pds">"</span>this is a cxxlog example, <span class="pl-c1">%s</span>, <span class="pl-c1">%d</span>.<span class="pl-cce">\n</span><span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>hello world<span class="pl-pds">"</span></span>, <span class="pl-c1">10</span>);
+<span class="pl-en">CXXLOG_INFO</span>(<span class="pl-s"><span class="pl-pds">"</span>this is a cxxlog example, <span class="pl-c1">%s</span>, <span class="pl-c1">%d</span>.<span class="pl-cce">\n</span><span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>hello world<span class="pl-pds">"</span></span>, <span class="pl-c1">10</span>);
+<span class="pl-en">CXXLOG_WARN</span>(<span class="pl-s"><span class="pl-pds">"</span>this is a cxxlog example, <span class="pl-c1">%s</span>, <span class="pl-c1">%d</span>.<span class="pl-cce">\n</span><span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>hello world<span class="pl-pds">"</span></span>, <span class="pl-c1">10</span>);
+<span class="pl-en">CXXLOG_ERROR</span>(<span class="pl-s"><span class="pl-pds">"</span>this is a cxxlog example, <span class="pl-c1">%s</span>, <span class="pl-c1">%d</span>.<span class="pl-cce">\n</span><span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>hello world<span class="pl-pds">"</span></span>, <span class="pl-c1">10</span>);
+</pre></div>
+
+<h4>
+<a id="output" class="anchor" href="#output" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>output</code>
+</h4>
+
+<pre><code>20160406 14:03:37.911 [30210] &lt;TRACE&gt; this is a cxxlog example, hello world, 10.
+20160406 14:03:37.911 [30210] &lt;DEBUG&gt; this is a cxxlog example, hello world, 10.
+20160406 14:03:37.911 [30210] &lt;INFO&gt; this is a cxxlog example, hello world, 10.
+20160406 14:03:37.911 [30210] &lt;WARNING&gt; this is a cxxlog example, hello world, 10.
+20160406 14:03:37.911 [30210] &lt;ERROR&gt; this is a cxxlog example, hello world, 10.
+</code></pre>
+
+<h2>
+<a id="dependency" class="anchor" href="#dependency" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Dependency</h2>
+
+<ul>
+<li>c++11</li>
+<li>libpthread</li>
+</ul>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/hthao/cxxlog">Cxxlog</a> is maintained by <a href="https://github.com/hthao">hthao</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
+  </body>
+</html>
