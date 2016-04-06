@@ -9,7 +9,6 @@ Logger *Logger::instance_ = NULL;
 pthread_once_t Logger::pOnce_ = PTHREAD_ONCE_INIT;
 thread_local pid_t myThreadId_ = 0;
 
-
 Logger::Logger()
     :logPathName_(""),
     logFp_(NULL),
@@ -38,7 +37,6 @@ void Logger::Open(const char *pathName)
     }
 
     logPathName_.assign(pathName);
-
     char pid[32];
     snprintf(pid, 32, ".%d", (int)::getpid());
     logPathName_.append(pid);
@@ -146,7 +144,7 @@ void Logger::Write(LogLevel level)
 
     currentSize_ += size;
     ::memset(timeBuf_, 0, 64);
-   ::memset(logBuf_, 0, 1024);
+    ::memset(logBuf_, 0, 1024);
  
     //force flush.
     if (::difftime(tv_.tv_sec, lastFlushSecs_) > (double)forceFlushIntervel_) {
