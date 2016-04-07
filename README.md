@@ -1,5 +1,5 @@
 # cxxlog
-A simple log class (c++). 
+A simple c++ class for logging. 
 
 + Efficient
 + Thread safe
