@@ -9,6 +9,7 @@ Logger *Logger::instance_ = NULL;
 pthread_once_t Logger::pOnce_ = PTHREAD_ONCE_INIT;
 thread_local pid_t myThreadId_ = 0;
 
+
 Logger::Logger()
     :logPathName_(""),
     logFp_(NULL),
@@ -58,6 +59,7 @@ void Logger::Close()
         ::fclose(logFp_);
         logFp_ = NULL;
     }
+
     logPathName_ = "";
     rotateSize_ = 10*1024*1024;
     currentSize_ = 0;
@@ -150,10 +152,6 @@ void Logger::Write(LogLevel level)
     }
 
     currentSize_ += size;
-<<<<<<< HEAD
-=======
-    ::memset(timeBuf_, 0, 64);
->>>>>>> 71573154223aa0fe154abca74f603ab85e38198e
     ::memset(logBuf_, 0, 1024);
  
     //force flush.
