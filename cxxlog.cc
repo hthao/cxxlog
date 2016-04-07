@@ -13,15 +13,18 @@ thread_local pid_t myThreadId_ = 0;
 Logger::Logger()
     :logPathName_(""),
     logFp_(NULL),
-    rotateSize_(1024*1024*10),
+    logBuf_{0},
+    rotateSize_(1024*1024*100), // default rotate size is 100MB.
     currentSize_(0),
     level_(LogLevel::TRACE),
     stdOut_(false),
+    tv_{0, 0},
+    lastTv_{0, 0},
     lastFlushSecs_(0),
-    forceFlushIntervel_(5) 
+    forceFlushIntervel_(3), // default forceFlushIntervel is 3 seconds.
+    timeBuf_{0},
+    timestampLen_(0)
 {
-    // default rotate size is 10MB.
-    // default forceFlushIntervel is 5 seconds.
 }
 
 Logger::~Logger()
@@ -131,8 +134,12 @@ const char* Logger::MapLevel(LogLevel level)
 void Logger::FormatTimeStamp()
 {
     ::gettimeofday(&tv_, NULL);
-    int offset = ::strftime(timeBuf_, 64, "%Y%m%d %H:%M:%S.", ::localtime(&tv_.tv_sec));
-    snprintf(timeBuf_ + offset, 64 - offset, "%03d", (int)tv_.tv_usec/1000);
+
+    if (::difftime(tv_.tv_sec, lastTv_.tv_sec) > 0) {
+        timestampLen_ = ::strftime(timeBuf_, 64, "%Y%m%d %H:%M:%S.", ::localtime(&tv_.tv_sec));
+        lastTv_ = tv_;
+    }
+    snprintf(timeBuf_ + timestampLen_, 64 - timestampLen_, "%03d", (int)tv_.tv_usec/1000);
 }
 
 void Logger::Write(LogLevel level)
@@ -145,8 +152,7 @@ void Logger::Write(LogLevel level)
     }
 
     currentSize_ += size;
-    ::memset(timeBuf_, 0, 64);
-   ::memset(logBuf_, 0, 1024);
+    ::memset(logBuf_, 0, 1024);
  
     //force flush.
     if (::difftime(tv_.tv_sec, lastFlushSecs_) > (double)forceFlushIntervel_) {

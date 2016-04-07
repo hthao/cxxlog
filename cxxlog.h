@@ -87,9 +87,11 @@ private:
 
     //log timestamp
     struct timeval tv_;
+    struct timeval lastTv_;
     time_t lastFlushSecs_;
     unsigned int forceFlushIntervel_;
     char timeBuf_[64];
+    int timestampLen_;
 
     std::mutex mtx_;
 };
