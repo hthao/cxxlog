@@ -41,6 +41,7 @@ void Logger::Open(const char *pathName)
     }
 
     logPathName_.assign(pathName);
+
     char pid[32];
     snprintf(pid, 32, ".%d", (int)::getpid());
     logPathName_.append(pid);
@@ -50,6 +51,10 @@ void Logger::Open(const char *pathName)
         perror("Logger open failed");
         return;
     }
+
+    currentSize_ = 0;
+    lastFlushSecs_ = 0;
+    lastTv_ = {0, 0};
 }
 
 void Logger::Close()
@@ -59,14 +64,6 @@ void Logger::Close()
         ::fclose(logFp_);
         logFp_ = NULL;
     }
-
-    logPathName_ = "";
-    rotateSize_ = 10*1024*1024;
-    currentSize_ = 0;
-    level_ = LogLevel::TRACE;
-    stdOut_ = false;
-    lastFlushSecs_ = 0;
-    forceFlushIntervel_ = 5;
 }
 
 void Logger::SetRotateSize(size_t size)
