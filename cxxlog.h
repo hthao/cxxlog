@@ -101,11 +101,11 @@ private:
 
 #define CXXLOG_OPEN(pathName, stdOut) do { cxxlog::Logger::GetInstance()->Open(pathName); \
     cxxlog::Logger::GetInstance()->SetStdout(stdOut); }while(0)
-#define CXXLOG_TRACE(format,...) do { cxxlog::Logger::GetInstance()->Log(cxxlog::LogLevel::TRACE, format, __VA_ARGS__); }while(0)
-#define CXXLOG_DEBUG(format,...) do { cxxlog::Logger::GetInstance()->Log(cxxlog::LogLevel::DEBUG, format, __VA_ARGS__); }while(0)
-#define CXXLOG_INFO(format,...) do { cxxlog::Logger::GetInstance()->Log(cxxlog::LogLevel::INFO, format, __VA_ARGS__); }while(0)
-#define CXXLOG_WARN(format,...) do { cxxlog::Logger::GetInstance()->Log(cxxlog::LogLevel::WARN, format, __VA_ARGS__); }while(0)
-#define CXXLOG_ERROR(format,...) do { cxxlog::Logger::GetInstance()->Log(cxxlog::LogLevel::ERROR, format, __VA_ARGS__); }while(0)
+#define CXXLOG_TRACE(...) do { cxxlog::Logger::GetInstance()->Log(cxxlog::LogLevel::TRACE, __VA_ARGS__); }while(0)
+#define CXXLOG_DEBUG(...) do { cxxlog::Logger::GetInstance()->Log(cxxlog::LogLevel::DEBUG, __VA_ARGS__); }while(0)
+#define CXXLOG_INFO(...) do { cxxlog::Logger::GetInstance()->Log(cxxlog::LogLevel::INFO, __VA_ARGS__); }while(0)
+#define CXXLOG_WARN(...) do { cxxlog::Logger::GetInstance()->Log(cxxlog::LogLevel::WARN, __VA_ARGS__); }while(0)
+#define CXXLOG_ERROR(...) do { cxxlog::Logger::GetInstance()->Log(cxxlog::LogLevel::ERROR, __VA_ARGS__); }while(0)
 
 
 #endif
