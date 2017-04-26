@@ -1,3 +1,4 @@
+//Author: Hao Hongting <haohongting@live.com>
 #ifndef __CXXLOG_H__
 #define __CXXLOG_H__
 
@@ -10,7 +11,6 @@
 #include <sys/types.h> 
 #include <sys/syscall.h>
 #include <mutex> 
-
 
 namespace cxxlog {
 

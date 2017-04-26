@@ -1,3 +1,4 @@
+//Author: Hao Hongting <haohongting@live.com>
 #include <stdarg.h>
 #include <string.h>
 #include <sys/time.h>
@@ -5,14 +6,14 @@
 
 namespace cxxlog {
 
-Logger *Logger::instance_ = NULL;
+Logger *Logger::instance_ = nullptr;
 pthread_once_t Logger::pOnce_ = PTHREAD_ONCE_INIT;
 thread_local pid_t myThreadId_ = 0;
 
 
 Logger::Logger()
     :logPathName_(""),
-    logFp_(NULL),
+    logFp_(nullptr),
     logBuf_{0},
     rotateSize_(1024*1024*100), // default rotate size is 100MB.
     currentSize_(0),
@@ -62,7 +63,7 @@ void Logger::Close()
     std::lock_guard<std::mutex> lock(mtx_);
     if (logFp_) {
         ::fclose(logFp_);
-        logFp_ = NULL;
+        logFp_ = nullptr;
     }
 }
 
@@ -130,7 +131,7 @@ const char* Logger::MapLevel(LogLevel level)
 
 void Logger::FormatTimeStamp()
 {
-    ::gettimeofday(&tv_, NULL);
+    ::gettimeofday(&tv_, nullptr);
 
     if (::difftime(tv_.tv_sec, lastTv_.tv_sec) > 0) {
         timestampLen_ = ::strftime(timeBuf_, 64, "%Y%m%d %H:%M:%S.", ::localtime(&tv_.tv_sec));
