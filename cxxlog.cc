@@ -6,10 +6,7 @@
 
 namespace cxxlog {
 
-Logger *Logger::instance_ = nullptr;
-pthread_once_t Logger::pOnce_ = PTHREAD_ONCE_INIT;
 thread_local pid_t myThreadId_ = 0;
-
 
 Logger::Logger()
     :logPathName_(""),

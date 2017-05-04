@@ -42,15 +42,10 @@ public:
     void Log(LogLevel level, const char *format, ...);
 
     static Logger* GetInstance() {
-        pthread_once(&pOnce_, &Logger::Init);
-        assert(instance_ != NULL);
-        return instance_;
+        static Logger instance;
+        return &instance;
     }
     
-    static void Init() {
-        instance_ = new Logger();
-    }
-
     pid_t ThreadId() { 
         if (myThreadId_ == 0) {
             myThreadId_ = Gettid();
@@ -70,10 +65,6 @@ private:
     }  
 
 private:
-    //singleton
-    static pthread_once_t pOnce_;
-    static Logger *instance_;
-
     //log file
     std::string logPathName_;
     FILE *logFp_;
