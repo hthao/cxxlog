@@ -5,11 +5,11 @@ A simple c++ class for logging.
 + Thread safe
 + Easy to use
 
-##Format
+## Format
 `timestamp` `[thread ID]` `<log level>` `log content`
-##Example
+## Example
 
-####`code`
+#### `code`
 ```c
 
 CXXLOG_OPEN("./test.log", true); /* "true" is meant to output to stdout. */
@@ -20,7 +20,7 @@ CXXLOG_WARN("this is a cxxlog example, %s, %d.\n", "hello world", 10);
 CXXLOG_ERROR("this is a cxxlog example, %s, %d.\n", "hello world", 10);
 
 ```
-####`output`
+#### `output`
 
 ```
 20160406 14:03:37.911 [30210] <TRACE> this is a cxxlog example, hello world, 10.
@@ -29,6 +29,6 @@ CXXLOG_ERROR("this is a cxxlog example, %s, %d.\n", "hello world", 10);
 20160406 14:03:37.911 [30210] <WARNING> this is a cxxlog example, hello world, 10.
 20160406 14:03:37.911 [30210] <ERROR> this is a cxxlog example, hello world, 10.
 ```
-##Dependency
+## Dependency
 * c++11
 * libpthread
